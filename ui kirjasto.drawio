@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram name="Page-1" id="Xrg5SS5sOLoPurbLF61z">
+    <mxGraphModel dx="1639" dy="935" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="DbC_zBIJW6f5wqjc_jhi-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#0050EF,#324981);fontColor=#ffffff;strokeColor=#001DBC;" value="" vertex="1">
+          <mxGeometry height="710" width="690" x="90" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="DbC_zBIJW6f5wqjc_jhi-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" value="NIMI&amp;nbsp; &amp;nbsp; &amp;nbsp;TEKIJA&amp;nbsp; ISBN&amp;nbsp; TILANNE LAINATTU TOIMINNOT" vertex="1">
+          <mxGeometry height="30" width="560" x="160" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="DbC_zBIJW6f5wqjc_jhi-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=light-dark(#0050ef, #162646);fontColor=#ffffff;strokeColor=#001DBC;fontSize=54;" value="&lt;font color=&quot;#ba0000&quot;&gt;Kirjat&lt;/font&gt;" vertex="1">
+          <mxGeometry height="480" width="560" x="160" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="DbC_zBIJW6f5wqjc_jhi-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d80073;fontColor=#ffffff;strokeColor=#A50040;" value="" vertex="1">
+          <mxGeometry height="20" width="240" x="160" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="DbC_zBIJW6f5wqjc_jhi-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6a00ff;fontColor=#ffffff;strokeColor=#3700CC;" value="" vertex="1">
+          <mxGeometry height="20" width="240" x="510" y="180" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
