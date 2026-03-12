@@ -1,0 +1,31 @@
+kirjasto/
+├── src/
+│   ├── main/
+│   │   ├── java/com/example/kirjasto/
+│   │   │   ├── Main.java
+│   │   │   ├── model/
+│   │   │   │   ├── Kirja.java
+│   │   │   │   └── Lainaus.java
+│   │   │   ├── service/
+│   │   │   │   ├── KirjastoService.java
+│   │   │   │   └── TallennusService.java
+│   │   │   └── controller/
+│   │   │       ├── KirjaListaController.java
+│   │   │       ├── LisaaKirjaController.java
+│   │   │       ├── MuokkaaKirjaController.java
+│   │   │       ├── LainausController.java
+│   │   │       └── HistoriaController.java
+│   │   └── resources/
+│   │       └── fxml/
+│   │           ├── kirjalista.fxml
+│   │           ├── lisaakirja.fxml
+│   │           ├── muokkaakirja.fxml
+│   │           ├── lainaus.fxml
+│   │           └── historia.fxml
+│   └── test/
+│       └── java/com/example/kirjasto/
+│           └── KirjastoServiceTest.java
+├── kirjasto.json
+├── .gitignore
+├── README.md
+└── pom.xml
