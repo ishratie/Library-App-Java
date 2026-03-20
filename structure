@@ -16,7 +16,7 @@ kirjasto/
 │   │   │       ├── LainausController.java
 │   │   │       └── HistoriaController.java
 │   │   └── resources/
-│   │       └── fxml/
+│   │       └── fi.jyu.ohj2.iliadanilo.kirjasto.project/
 │   │           ├── kirjalista.fxml
 │   │           ├── lisaakirja.fxml
 │   │           ├── muokkaakirja.fxml
@@ -28,4 +28,6 @@ kirjasto/
 ├── kirjasto.json
 ├── .gitignore
 ├── README.md
-└── pom.xml
+├── pom.xml
+├── structure.txt
+└── ui.kirjasto.drawio

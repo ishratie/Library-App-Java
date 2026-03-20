@@ -1,9 +1,21 @@
 package fi.jyu.ohj2.iliadanilo.kirjasto.project;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
+public class Main extends Application {
+    @Override
+    public void start(Stage stage) throws Exception{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fi/jyu/ohj2/iliadanilo/kirjasto/project/kirjalista.fxml"));
+        Scene scene = new Scene(loader.load());
+        stage.setTitle("Kirjasto Manager");
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public static void main(String[] args) {
-        Application.launch(App.class, args);
+        launch(args);
     }
 }
