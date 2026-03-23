@@ -5,11 +5,13 @@ import fi.jyu.ohj2.iliadanilo.kirjasto.project.service.KirjastoService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 
 
 public class KirjaListaController {
@@ -26,6 +28,7 @@ public class KirjaListaController {
         tekijaKolumni.setCellValueFactory(new PropertyValueFactory<>("tekija"));
         isbnKolumni.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         kirjaTablu.setItems(kirjasto.getKirjat());
+        DeleteButton();
     }
     @FXML
     private void avaaLisaaKirja() {
@@ -53,4 +56,24 @@ public class KirjaListaController {
             System.out.println("avaaMyohastyneet ikuna ei toimi" + w.getMessage());
         }
     }
+    @FXML private TableColumn<Kirja, Void> toiminnotKolumni;
+    //unfortunetelly, i cant add delete button in fxml file, because the table is dynamic
+    private void DeleteButton(){
+        toiminnotKolumni.setCellFactory(column -> new TableCell<>() {
+            private final Button poista = new Button("Poista");
+            {
+            poista.setOnAction(w -> { // when it clicked the button will appear on this very row
+                Kirja kirja = getTableView().getItems().get(getIndex());
+                kirjasto.poistaKirja(kirja);
+            });
+        }
+        @Override
+                protected void updateItem(Void item, boolean empty){
+                super.updateItem(item, empty); // check to always appear
+                if (empty) setGraphic(null); // hide delete on empty row
+                else setGraphic(poista);    // show delete on written row
+            }
+        });
+    }
+
 }

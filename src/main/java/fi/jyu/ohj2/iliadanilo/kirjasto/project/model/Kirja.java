@@ -1,5 +1,6 @@
 package fi.jyu.ohj2.iliadanilo.kirjasto.project.model;
-
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 public class Kirja {
     private String nimi;
     private String tekija;
@@ -29,6 +30,12 @@ public class Kirja {
     public void setIsbn(String isbn){
         this.isbn = isbn;
     }
-
+    private ObservableList<Lainaus> lainaukset = FXCollections.observableArrayList();
+    public ObservableList<Lainaus> getLainaukset(){
+        return lainaukset;
+    }
+    public void lisaaLainaus(Lainaus lainaus){
+        lainaukset.add(lainaus);
+    }
 
 }

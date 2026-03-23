@@ -12,4 +12,8 @@ public class KirjastoService {
     public void lisaaKirja(Kirja kirja) {
         kirjat.add(kirja);
     }
+    public void poistaKirja(Kirja kirja) {
+        kirja.getLainaukset().clear();
+        kirjat.remove(kirja);
+    }
 }
