@@ -5,9 +5,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class KirjastoService {
+    private final TallennusService tallennus = new TallennusService();
     private final ObservableList<Kirja> kirjat = FXCollections.observableArrayList();
     public ObservableList<Kirja> getKirjat() {
         return kirjat;
+    }
+    public KirjastoService() {
+        kirjat.addAll(tallennus.loading());
     }
     public void lisaaKirja(Kirja kirja) {
         kirjat.add(kirja);
@@ -15,5 +19,8 @@ public class KirjastoService {
     public void poistaKirja(Kirja kirja) {
         kirja.getLainaukset().clear();
         kirjat.remove(kirja);
+    }
+    public void tallenna() {
+        tallennus.tallenna(kirjat);
     }
 }

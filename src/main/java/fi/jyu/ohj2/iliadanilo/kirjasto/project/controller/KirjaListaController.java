@@ -76,4 +76,7 @@ public class KirjaListaController {
         });
     }
 
+    public void tallenna() {
+        kirjasto.tallenna();
+    }
 }

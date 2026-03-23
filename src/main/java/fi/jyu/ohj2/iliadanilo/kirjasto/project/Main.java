@@ -1,5 +1,5 @@
 package fi.jyu.ohj2.iliadanilo.kirjasto.project;
-
+import fi.jyu.ohj2.iliadanilo.kirjasto.project.controller.KirjaListaController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +12,8 @@ public class Main extends Application {
         Scene scene = new Scene(loader.load());
         stage.setTitle("Kirjasto Manager");
         stage.setScene(scene);
+        KirjaListaController controller  = loader.getController();
+        stage.setOnCloseRequest(w -> controller.tallenna());
         stage.show();
     }
 
