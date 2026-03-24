@@ -10,6 +10,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 
@@ -20,6 +21,8 @@ public class KirjaListaController {
     @FXML private TableColumn<Kirja, String> tekijaKolumni;
     @FXML private TableColumn<Kirja, String> isbnKolumni;
 
+
+
     private KirjastoService kirjasto = new KirjastoService();
 
     @FXML
@@ -28,7 +31,8 @@ public class KirjaListaController {
         tekijaKolumni.setCellValueFactory(new PropertyValueFactory<>("tekija"));
         isbnKolumni.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         kirjaTablu.setItems(kirjasto.getKirjat());
-        DeleteButton();
+        DeleteEditButton();
+
     }
     @FXML
     private void avaaLisaaKirja() {
@@ -56,23 +60,53 @@ public class KirjaListaController {
             System.out.println("avaaMyohastyneet ikuna ei toimi" + w.getMessage());
         }
     }
+    @FXML
+    private void avaaEdit(Kirja kirja){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/fi/jyu/ohj2/iliadanilo/kirjasto/project/muokkaakirja.fxml"));
+            Stage popup = new Stage();
+            popup.setTitle("Muokka kirjaa");
+            popup.setScene(new Scene(loader.load()));
+            MuokkaKirjaController muokkaKirjaController = loader.getController();
+            muokkaKirjaController.setKirja(kirja);
+            muokkaKirjaController.setKirjasto(kirjasto);
+            popup.showAndWait();
+            kirjaTablu.refresh();
+        } catch (Exception w) {
+            System.out.print("edit not working" + w.getMessage());
+        }
+    }
+
+
     @FXML private TableColumn<Kirja, Void> toiminnotKolumni;
-    //unfortunetelly, i cant add delete button in fxml file, because the table is dynamic
-    private void DeleteButton(){
+
+    private void DeleteEditButton(){
         toiminnotKolumni.setCellFactory(column -> new TableCell<>() {
             private final Button poista = new Button("Poista");
+            private final Button edit = new Button("Edit");
             {
-            poista.setOnAction(w -> { // when it clicked the button will appear on this very row
-                Kirja kirja = getTableView().getItems().get(getIndex());
-                kirjasto.poistaKirja(kirja);
-            });
-        }
-        @Override
-                protected void updateItem(Void item, boolean empty){
-                super.updateItem(item, empty); // check to always appear
-                if (empty) setGraphic(null); // hide delete on empty row
-                else setGraphic(poista);    // show delete on written row
+                poista.setOnAction(w -> {
+                    Kirja kirja = getTableView().getItems().get(getIndex());
+                    kirjasto.poistaKirja(kirja);
+                });
+                edit.setOnAction(w -> {
+                    Kirja kirja = getTableView().getItems().get(getIndex());
+                    avaaEdit(kirja);
+                });
             }
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox box = new HBox(5, poista, edit);
+                    setGraphic(box);
+                }
+            }
+
         });
     }
 

@@ -12,6 +12,7 @@ public class Main extends Application {
         Scene scene = new Scene(loader.load());
         stage.setTitle("Kirjasto Manager");
         stage.setScene(scene);
+        //making the window event to close the window after saving the books
         KirjaListaController controller  = loader.getController();
         stage.setOnCloseRequest(w -> controller.tallenna());
         stage.show();

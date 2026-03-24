@@ -1,4 +1,4 @@
-# The Java App for Librabry Use.
+# The Java App for Library.
 # I need to add
 * what the project does
 * how to run it

@@ -21,6 +21,7 @@ public class TallennusService {
     }
     public List<Kirja> loading() {
         try {
+            //mapper to convert the names of books into the ArrayList
             Kirja[] kirjat = mapper.readValue(file.toFile(), Kirja[].class);
             return new ArrayList<>(Arrays.asList(kirjat));
         } catch (Exception w) {
