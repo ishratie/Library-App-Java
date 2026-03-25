@@ -13,13 +13,34 @@ public class MuokkaKirjaController {
     @FXML private Label virheLabel;
     @FXML
     private void tallenna(){
+        if (!isItCorrect()) return;
+        kirja.setNimi(nimiField.getText());
+        kirja.setTekija(tekijaField.getText());
+        kirja.setIsbn(isbnField.getText());
         kirja.setNimi(nimiField.getText());
         nimiField.setText(kirja.getNimi());
         tekijaField.setText(kirja.getTekija());
         isbnField.setText(kirja.getIsbn());
         System.out.println("talenna kutsuttu");
+        kirjasto.tallenna();
         sulje();
     }
+    private boolean isItCorrect(){
+        if (nimiField.getText().isBlank()) {
+            virheLabel.setText("nimi on poissa");
+            return false;
+        }
+        if (tekijaField.getText().isBlank()) {
+            virheLabel.setText("tekijä on poissa");
+        }
+        if (isbnField.getText().isBlank()){
+            virheLabel.setText("isbn on poissa");
+        }
+        virheLabel.setText("hell yeah");
+        return true;
+    }
+
+
     @FXML
     private void sulje(){
         Stage stage = (Stage) nimiField.getScene().getWindow();

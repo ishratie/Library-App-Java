@@ -15,14 +15,44 @@ public class LisaaKirjaController {
     @FXML private Label virheLabel;
 
     private KirjastoService kirjasto;
+    private Kirja kirja;
+
     public void setKirjasto(KirjastoService kirjasto){
         this.kirjasto = kirjasto;
     }
+    public void setKirja(Kirja kirja){
+        this.kirja = kirja;
+        nimiField.setText(kirja.getNimi());
+        tekijaField.setText(kirja.getTekija());
+        isbnField.setText(kirja.getIsbn());
+    }
     @FXML
     private void tallenna() {
+        if (!isItCorrect()) return;
+        kirja.setNimi(nimiField.getText());
+        kirja.setTekija(tekijaField.getText());
+        kirja.setIsbn(isbnField.getText());
+        kirja.setNimi(nimiField.getText());
+        nimiField.setText(kirja.getNimi());
+        tekijaField.setText(kirja.getTekija());
+        isbnField.setText(kirja.getIsbn());
         Kirja kirja = new Kirja(nimiField.getText(), tekijaField.getText(),isbnField.getText());
         kirjasto.lisaaKirja(kirja);
         sulje();
+    }
+    private boolean isItCorrect(){
+        if (nimiField.getText().isBlank()) {
+            virheLabel.setText("nimi on poissa");
+            return false;
+        }
+        if (tekijaField.getText().isBlank()) {
+            virheLabel.setText("tekijä on poissa");
+        }
+        if (isbnField.getText().isBlank()){
+            virheLabel.setText("isbn on poissa");
+        }
+        virheLabel.setText("hell yeah");
+        return true;
     }
 
     @FXML
