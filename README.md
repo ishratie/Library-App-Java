@@ -7,7 +7,7 @@
 * View overdue loans
 * Save data to a JSON file
 
-# How To run
+# How to run
 * Press run in VS code or IntelliJ IDEA
 * for now, press javafx:run in maven
 
