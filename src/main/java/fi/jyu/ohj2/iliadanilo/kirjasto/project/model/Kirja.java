@@ -42,5 +42,16 @@ public class Kirja {
         lainaukset.add(lainaus);
     }
 
+    public String getTilanne() {
+        for(Lainaus lainas : lainaukset) {
+            if (lainas.palautettuPvm() == null)
+                return "Lainassa";
+        }
+        return "Saatavilla";
+    }
+    public int getLainauksetNmr() {
+        return lainaukset.size();
+    }
+
 
 }

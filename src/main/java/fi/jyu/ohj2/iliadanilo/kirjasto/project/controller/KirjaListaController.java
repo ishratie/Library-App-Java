@@ -1,6 +1,7 @@
 package fi.jyu.ohj2.iliadanilo.kirjasto.project.controller;
 
 import fi.jyu.ohj2.iliadanilo.kirjasto.project.model.Kirja;
+import fi.jyu.ohj2.iliadanilo.kirjasto.project.model.Lainaus;
 import fi.jyu.ohj2.iliadanilo.kirjasto.project.service.KirjastoService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +21,8 @@ public class KirjaListaController {
     @FXML private TableColumn<Kirja, String> nimiKolumni;
     @FXML private TableColumn<Kirja, String> tekijaKolumni;
     @FXML private TableColumn<Kirja, String> isbnKolumni;
+    @FXML private TableColumn<Kirja, String> tilanneKolumni;
+    @FXML private TableColumn<Kirja, Integer> lainattuKolumni;
 
 
 
@@ -32,6 +35,8 @@ public class KirjaListaController {
         isbnKolumni.setCellValueFactory(new PropertyValueFactory<>("isbn"));
         kirjaTablu.setItems(kirjasto.getKirjat());
         DeleteEditButton();
+        tilanneKolumni.setCellValueFactory(new PropertyValueFactory<>("tilanne"));
+        lainattuKolumni.setCellValueFactory(new PropertyValueFactory<>("lainauksetNmr"));
 
     }
     @FXML
@@ -75,6 +80,23 @@ public class KirjaListaController {
             kirjaTablu.refresh();
         } catch (Exception w) {
             System.out.print("edit not working" + w.getMessage());
+        }
+    }
+    @FXML
+    private void avaaLainaus() {
+        Kirja kirja = kirjaTablu.getSelectionModel().getSelectedItem();
+        if (kirja == null || kirja.getTilanne().equals("Lainassa")) return;
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fi/jyu/ohj2/iliadanilo/kirjasto/project/lainaus.fxml"));
+            Stage popup = new Stage();
+            popup.setTitle("Lainaukset");
+            popup.setScene(new Scene(loader.load()));
+            LainausController controller = loader.getController();
+            controller.setKirja(kirja);
+            popup.showAndWait();
+            kirjaTablu.refresh();
+        } catch (Exception w) {
+            System.out.println("avaaLainaus ikuna ei toimi" + w.getMessage());
         }
     }
 
