@@ -2,6 +2,7 @@ package fi.jyu.ohj2.iliadanilo.kirjasto.project.model;
 import javax.security.auth.callback.LanguageCallback;
 import java.time.LocalDate;
 public class Lainaus {
+    public Lainaus() {}
     private String lainaajanimi;
     private LocalDate lainattuPvm;
     private LocalDate palautusPvm;
@@ -11,7 +12,7 @@ public class Lainaus {
         this.lainaajanimi = lainaajanimi;
         this.lainattuPvm = lainattuPvm;
         this.palautettuPvm = palautettuPvm;
-        this.palautusPvm = palautettuPvm;
+        this.palautusPvm = palautusPvm;
         this.kirja = kirja;
     }
     public String getLainaajanimi(){
@@ -24,7 +25,7 @@ public class Lainaus {
         return palautusPvm;
     }
     public LocalDate palautettuPvm(){
-        return palautusPvm;
+        return palautettuPvm;
     }
     public Kirja getKirja() {
         return kirja;

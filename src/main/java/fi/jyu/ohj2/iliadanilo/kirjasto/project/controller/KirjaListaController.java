@@ -23,7 +23,7 @@ public class KirjaListaController {
     @FXML private TableColumn<Kirja, String> isbnKolumni;
     @FXML private TableColumn<Kirja, String> tilanneKolumni;
     @FXML private TableColumn<Kirja, Integer> lainattuKolumni;
-
+    
 
 
     private KirjastoService kirjasto = new KirjastoService();
