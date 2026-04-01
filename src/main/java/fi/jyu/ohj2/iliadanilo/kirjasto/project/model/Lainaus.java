@@ -1,7 +1,7 @@
 package fi.jyu.ohj2.iliadanilo.kirjasto.project.model;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.security.auth.callback.LanguageCallback;
 import java.time.LocalDate;
 public class Lainaus {
     @JsonIgnore

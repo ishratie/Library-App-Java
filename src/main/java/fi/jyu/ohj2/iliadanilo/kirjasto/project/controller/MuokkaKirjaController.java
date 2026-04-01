@@ -1,11 +1,11 @@
 package fi.jyu.ohj2.iliadanilo.kirjasto.project.controller;
+
 import fi.jyu.ohj2.iliadanilo.kirjasto.project.model.Kirja;
 import fi.jyu.ohj2.iliadanilo.kirjasto.project.service.KirjastoService;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.stage.Stage;
-import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class MuokkaKirjaController {
 

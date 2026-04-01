@@ -1,4 +1,5 @@
 package fi.jyu.ohj2.iliadanilo.kirjasto.project.controller;
+
 import fi.jyu.ohj2.iliadanilo.kirjasto.project.model.Kirja;
 import fi.jyu.ohj2.iliadanilo.kirjasto.project.model.Lainaus;
 import fi.jyu.ohj2.iliadanilo.kirjasto.project.service.KirjastoService;
@@ -7,20 +8,27 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HistoriaController {
-    @FXML private Label otsikkoLabel;
-    @FXML private TableView<Lainaus> historiaTablu;
-    @FXML private TableColumn<Lainaus, String> lainaajaKolumni;
-    @FXML private TableColumn<Lainaus, LocalDate> lainattuKolumni;
-    @FXML private TableColumn<Lainaus, LocalDate> palautusPvmKolumni;
-    @FXML private TableColumn<Lainaus, LocalDate> palautettuKolumni;
-    @FXML private TableColumn<Lainaus, Void> toiminnotKolumni;
+    @FXML
+    private Label otsikkoLabel;
+    @FXML
+    private TableView<Lainaus> historiaTablu;
+    @FXML
+    private TableColumn<Lainaus, String> lainaajaKolumni;
+    @FXML
+    private TableColumn<Lainaus, LocalDate> lainattuKolumni;
+    @FXML
+    private TableColumn<Lainaus, LocalDate> palautusPvmKolumni;
+    @FXML
+    private TableColumn<Lainaus, LocalDate> palautettuKolumni;
+    @FXML
+    private TableColumn<Lainaus, Void> toiminnotKolumni;
+
     @FXML
     public void initialize() {
         lainaajaKolumni.setCellValueFactory(new PropertyValueFactory<>("lainaajanimi"));
@@ -31,22 +39,25 @@ public class HistoriaController {
     }
 
     private boolean isitmyohastynyt = false;
-    public void setMyohastyneet(boolean myohastyneet){
+
+    public void setMyohastyneet(boolean myohastyneet) {
         this.isitmyohastynyt = myohastyneet;
         if (myohastyneet) otsikkoLabel.setText("Myöhästyneet lainaukset");
     }
 
     @FXML
-    private void sulje(){
+    private void sulje() {
         Stage stage = (Stage) otsikkoLabel.getScene().getWindow();
         stage.close();
     }
+
     private KirjastoService kirjasto;
 
     public void setKirjasto(KirjastoService kirjasto) {
         this.kirjasto = kirjasto;
         paivitaTaulu();
     }
+
     private void paivitaTaulu() {
         if (kirjasto == null) return;
         List<Lainaus> kirjat = new ArrayList<>();
@@ -56,8 +67,8 @@ public class HistoriaController {
                     if (lainaus.getPalautettuPvm() == null
                             && lainaus.getPalautusPvm() != null
                             && LocalDate.now().isAfter(lainaus.getPalautusPvm())) {
-                            kirjat.add(lainaus);
-                            }
+                        kirjat.add(lainaus);
+                    }
                 } else {
                     kirjat.add(lainaus);
                 }
@@ -70,6 +81,7 @@ public class HistoriaController {
     private void palautaBTN() {
         toiminnotKolumni.setCellFactory(col -> new TableCell<>() {
             private final Button palauta = new Button("Palauta");
+
             {
                 palauta.setOnAction(e -> {
                     Lainaus lainaus = getTableView().getItems().get(getIndex());
@@ -79,15 +91,16 @@ public class HistoriaController {
                     historiaTablu.refresh();
                 });
             }
+
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                    if(empty) {
-                        setGraphic(null);
-                    } else {
-                        Lainaus lainaus = getTableView().getItems().get(getIndex());
-                        setGraphic(lainaus.getPalautettuPvm() == null ? palauta : null);
-                    }
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    Lainaus lainaus = getTableView().getItems().get(getIndex());
+                    setGraphic(lainaus.getPalautettuPvm() == null ? palauta : null);
+                }
 
             }
         });

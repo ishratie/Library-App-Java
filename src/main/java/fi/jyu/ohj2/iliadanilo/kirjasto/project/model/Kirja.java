@@ -1,8 +1,7 @@
 package fi.jyu.ohj2.iliadanilo.kirjasto.project.model;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import java.util.List;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Kirja {
     private String nimi;

@@ -1,9 +1,7 @@
 package fi.jyu.ohj2.iliadanilo.kirjasto.project.controller;
 
 import fi.jyu.ohj2.iliadanilo.kirjasto.project.model.Kirja;
-import fi.jyu.ohj2.iliadanilo.kirjasto.project.model.Lainaus;
 import fi.jyu.ohj2.iliadanilo.kirjasto.project.service.KirjastoService;
-import fi.jyu.ohj2.iliadanilo.kirjasto.project.controller.HistoriaController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
