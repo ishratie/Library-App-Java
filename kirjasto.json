@@ -1,1 +1,1 @@
-[{"nimi":"Sota ja Rauha","tekija":"Tolstoi","isbn":"1338","lainaukset":[],"tilanne":"Saatavilla","lainauksetNmr":0},{"nimi":"Idiot","tekija":"Dostoevskii","isbn":"1337","lainaukset":[],"tilanne":"Saatavilla","lainauksetNmr":0}]
+[{"nimi":"Idiot","tekija":"Dostoevskii","isbn":"1337","lainaukset":[{"lainaajanimi":"ilia","lainattuPvm":"2026-04-01","palautusPvm":"2026-04-30","palautettuPvm":null}],"tilanne":"Lainassa","lainauksetNmr":1},{"nimi":"aaaaa","tekija":"aaaaaa","isbn":"31321","lainaukset":[],"tilanne":"Saatavilla","lainauksetNmr":0}]

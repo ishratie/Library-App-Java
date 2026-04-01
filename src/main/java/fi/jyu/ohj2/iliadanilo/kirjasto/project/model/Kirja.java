@@ -44,7 +44,7 @@ public class Kirja {
 
     public String getTilanne() {
         for(Lainaus lainas : lainaukset) {
-            if (lainas.palautettuPvm() == null)
+            if (lainas.getPalautettuPvm() == null)
                 return "Lainassa";
         }
         return "Saatavilla";

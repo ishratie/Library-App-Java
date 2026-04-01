@@ -25,6 +25,7 @@
                 <Region HBox.hgrow="ALWAYS" />
                 <Button mnemonicParsing="false" onAction="#avaaMyohastyneet" text="Myöhästyneet" />
                 <Button mnemonicParsing="false" onAction="#avaaLisaaKirja" text="Lisää kirja" />
+                <Button mnemonicParsing="false" onAction="#avaaHistoria" text="Historia" />
             </children>
         </HBox>
         <TableView fx:id="kirjaTablu" VBox.vgrow="ALWAYS">

@@ -1,5 +1,6 @@
 package fi.jyu.ohj2.iliadanilo.kirjasto.project.service;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -14,7 +15,8 @@ public class TallennusService {
     private static Path file = Path.of("kirjasto.json");
     private ObjectMapper mapper = new ObjectMapper()
             .registerModule(new JavaTimeModule())
-            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     public void tallenna(List<Kirja> kirjat){
         try {
             mapper.writeValue(file.toFile(), kirjat);

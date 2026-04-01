@@ -13,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import fi.jyu.ohj2.iliadanilo.kirjasto.project.controller.HistoriaController;
 
 
 
@@ -37,7 +38,6 @@ public class KirjaListaController {
         DeleteEditButton();
         tilanneKolumni.setCellValueFactory(new PropertyValueFactory<>("tilanne"));
         lainattuKolumni.setCellValueFactory(new PropertyValueFactory<>("lainauksetNmr"));
-
     }
     @FXML
     private void avaaLisaaKirja() {
@@ -60,6 +60,8 @@ public class KirjaListaController {
             Stage popup = new Stage();
             popup.setTitle("Myohastyneet");
             popup.setScene(new Scene(loader.load()));
+            HistoriaController controller = loader.getController();
+            controller.setKirjasto(kirjasto);
             popup.showAndWait();
         } catch (Exception w) {
             System.out.println("avaaMyohastyneet ikuna ei toimi" + w.getMessage());
@@ -82,9 +84,9 @@ public class KirjaListaController {
             System.out.print("edit not working" + w.getMessage());
         }
     }
-    @FXML
-    private void avaaLainaus() {
-        Kirja kirja = kirjaTablu.getSelectionModel().getSelectedItem();
+
+    private void avaaLainaus(Kirja kirja) {
+
         if (kirja == null || kirja.getTilanne().equals("Lainassa")) return;
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fi/jyu/ohj2/iliadanilo/kirjasto/project/lainaus.fxml"));
@@ -93,10 +95,25 @@ public class KirjaListaController {
             popup.setScene(new Scene(loader.load()));
             LainausController controller = loader.getController();
             controller.setKirja(kirja);
+            controller.setKirjasto(kirjasto);
             popup.showAndWait();
             kirjaTablu.refresh();
         } catch (Exception w) {
             System.out.println("avaaLainaus ikuna ei toimi" + w.getMessage());
+        }
+    }
+    @FXML
+    private void avaaHistoria() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fi/jyu/ohj2/iliadanilo/kirjasto/project/historia.fxml"));
+            Stage popup = new Stage();
+            popup.setTitle("Historia");
+            popup.setScene(new Scene(loader.load()));
+            HistoriaController controller = loader.getController();
+            controller.setKirjasto(kirjasto);
+            popup.showAndWait();
+        } catch (Exception w) {
+            System.out.println("avaaMyohastyneet ikuna ei toimi" + w.getMessage());
         }
     }
 
@@ -107,6 +124,7 @@ public class KirjaListaController {
         toiminnotKolumni.setCellFactory(column -> new TableCell<>() {
             private final Button poista = new Button("Poista");
             private final Button edit = new Button("Edit");
+            private final Button lainata = new Button("Lainata");
             {
                 poista.setOnAction(w -> {
                     Kirja kirja = getTableView().getItems().get(getIndex());
@@ -116,6 +134,10 @@ public class KirjaListaController {
                     Kirja kirja = getTableView().getItems().get(getIndex());
                     avaaEdit(kirja);
                 });
+                lainata.setOnAction(w -> {
+                    Kirja kirja = getTableView().getItems().get(getIndex());
+                    avaaLainaus(kirja);
+                });
             }
             @Override
             protected void updateItem(Void item, boolean empty) {
@@ -124,7 +146,7 @@ public class KirjaListaController {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    HBox box = new HBox(5, poista, edit);
+                    HBox box = new HBox(5, poista, edit, lainata);
                     setGraphic(box);
                 }
             }
