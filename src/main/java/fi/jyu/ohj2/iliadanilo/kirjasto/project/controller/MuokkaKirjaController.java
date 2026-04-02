@@ -6,22 +6,22 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+// the conroller of eding and its validation
 public class MuokkaKirjaController {
 
     @FXML private TextField nimiField;
     @FXML private TextField tekijaField;
     @FXML private TextField isbnField;
     @FXML private Label virheLabel;
-
+    // calling the names and variables
     private KirjastoService kirjasto;
     private Kirja kirja;
     @FXML
-    private void sulje(){
+    private void sulje(){ // function to close the stage
         Stage stage = (Stage) nimiField.getScene().getWindow();
         stage.close();
     }
-    public void setKirja(Kirja kirja){
+    public void setKirja(Kirja kirja){ // setting up the book, which gets the book, name, author, number
         this.kirja = kirja;
         nimiField.setText(kirja.getNimi());
         tekijaField.setText(kirja.getTekija());
@@ -29,32 +29,32 @@ public class MuokkaKirjaController {
     }
     public void setKirjasto(KirjastoService kirjasto) {
         this.kirjasto = kirjasto;
-    }
+    } // setting up the library service to use it lately
     @FXML
-    private void tallenna(){
-        if (!isItCorrect()) return;
-        kirja.setNimi(nimiField.getText());
-        kirja.setTekija(tekijaField.getText());
-        kirja.setIsbn(isbnField.getText());
-        System.out.println("talenna kutsuttu");
-        kirjasto.tallenna();
-        sulje();
+    private void tallenna(){ // the save function - to save the book and information about it
+        if (!isItCorrect()) return; // if smth missing - do not start the function
+        kirja.setNimi(nimiField.getText()); // name
+        kirja.setTekija(tekijaField.getText()); // author
+        kirja.setIsbn(isbnField.getText()); // number
+        System.out.println("talenna kutsuttu"); // prints in cmd that book is saved
+        kirjasto.tallenna(); // saves it
+        sulje(); // closes it
     }
     private boolean isItCorrect(){
         if (nimiField.getText().isBlank()) {
             virheLabel.setText("nimi on poissa");
-            return false;
+            return false; // if name is missing - no saving the book
         }
         if (tekijaField.getText().isBlank()) {
             virheLabel.setText("tekijä on poissa");
-            return false;
+            return false;// if author is missing - no saving the book
         }
         if (isbnField.getText().isBlank()){
             virheLabel.setText("isbn on poissa");
-            return false;
+            return false; // if num is missing - no saving the book
         }
         virheLabel.setText("hell yeah");
-        return true;
+        return true; // everything is okay  - saves it
     }
 
 
