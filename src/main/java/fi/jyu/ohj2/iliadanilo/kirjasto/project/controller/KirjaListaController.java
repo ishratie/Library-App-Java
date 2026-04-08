@@ -50,6 +50,7 @@ public class KirjaListaController {
             LisaaKirjaController lisaaKirjaController = loader.getController(); //yt retrieves the controller object associated with the FXML file
             lisaaKirjaController.setKirjasto(kirjasto); //passes the kirjasto to the controller of the addbook function
             popup.showAndWait(); // show the window
+            kirjaTablu.refresh();
         } catch (Exception w) {
             System.out.println("avaaLisaaKirja ikuna ei toimi" + w.getMessage()); // if smth went wrong - it show this
         }
@@ -65,6 +66,7 @@ public class KirjaListaController {
             controller.setMyohastyneet(true); // show only overdue books
             controller.setKirjasto(kirjasto);
             popup.showAndWait();
+            kirjaTablu.refresh();
         } catch (Exception w) {
             System.out.println("avaaMyohastyneet ikuna ei toimi" + w.getMessage());
         }
@@ -114,6 +116,7 @@ public class KirjaListaController {
             HistoriaController controller = loader.getController();
             controller.setKirjasto(kirjasto);
             popup.showAndWait();
+            kirjaTablu.refresh();
         } catch (Exception w) {
             System.out.println("avaaMyohastyneet ikuna ei toimi" + w.getMessage());
         }

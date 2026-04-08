@@ -6,6 +6,8 @@ import java.time.LocalDate;
 // tests to test different cases
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class KirjaTest{
     @Test
     void test() {
@@ -48,5 +50,33 @@ public class KirjaTest{
     //create a new loan for the book
     //add the loan to the book
     //check that the book’s status changes to loaned out
+
+    @Test
+    void testBookHasNoLoan() {
+        Kirja kirja = new Kirja("Nimi", "Tekijä", "1333");
+        assertEquals(0, kirja.getLainauksetNmr());
+        assertTrue(kirja.getLainaukset().isEmpty());
+    }
+    //create a new book
+    //create a new loan for the book
+    //add the loan to the book
+    //checks if there is laon
+
+
+    @Test
+    void testMultipleLoans() {
+        Kirja kirja = new Kirja("Nimi", "Tekijä", "1333");
+        for (int i = 0; i < 5; i++) {
+            Lainaus l = new Lainaus("Lainaaja" + i, LocalDate.now(), LocalDate.now().minusDays(1),
+                    LocalDate.now().plusDays(7), kirja);
+            kirja.lisaaLainaus(l);
+        }
+        assertEquals(5, kirja.getLainauksetNmr());
+    }
+    //create a new book
+    //create a new loan for the book
+    //checks can multiple people borrow a single book at the same time
+    //checks if there is loan
+
 }
 
